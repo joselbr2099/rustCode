@@ -1,4 +1,4 @@
-GROQ_API_KEY='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'
+
 
 
 while true; do
