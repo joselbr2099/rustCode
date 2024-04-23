@@ -1,0 +1,1 @@
+/run/media/jlblas/store3/LinuxFiles/Documents/languages/rustCode/simples/shadowing/target/debug/shadowing: /run/media/jlblas/store3/LinuxFiles/Documents/languages/rustCode/simples/shadowing/src/main.rs

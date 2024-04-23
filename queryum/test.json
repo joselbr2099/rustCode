@@ -1,0 +1,29 @@
+{
+  "id": "chatcmpl-2cc17f96-839e-43b9-9fa9-9fdb4de19df2",
+  "object": "chat.completion",
+  "created": 1713841967,
+  "model": "mixtral-8x7b-32768",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "test"
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 18,
+    "prompt_time": 0.005,
+    "completion_tokens": 239,
+    "completion_time": 0.425,
+    "total_tokens": 257,
+    "total_time": 0.43
+  },
+  "system_fingerprint": "fp_c5f20b5bb1",
+  "x_groq": {
+    "id": "req_01hw4f249je7bb3ynvrahhpb6s"
+  }
+}
