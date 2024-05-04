@@ -1,0 +1,44 @@
+#!/bin/env bash
+
+# const
+GROQ_API_KEY=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
+
+
+spinner() {                                                                                                       
+  local delay=0.75                                                                                                
+  local spinstr='|/-\'                                                                                            
+  local temp                                                                                                      
+  while true; do                                                                                                  
+    temp=${spinstr#?}                                                                                             
+    printf "  [%c]  " "${temp}"                                                                                    
+    spinstr=${temp}${spinstr%%?}                                                                                  
+    sleep $delay                                                                                                  
+    printf "\b\b\b\b\b\b"                                                                                         
+  done                                                                                                            
+} 
+
+main() {
+  QUERY=""
+  for arg in "$@"; do
+    if [[ $arg == *"command not found"* ]]; then
+      continue
+    fi
+    if [[ $arg == *"*$"* ]]; then
+      arg=$(eval $arg)
+      arg=$(echo $arg | urlencode -a -l )
+    fi
+    QUERY+=" $arg"
+  done
+
+  spinner &                                                                                                         
+  _spinner_pid=$!  
+  #echo " data parsed: $QUERY"
+  curl --silent -X POST "https://api.groq.com/openai/v1/chat/completions" \
+       -H "Authorization: Bearer $GROQ_API_KEY" \
+       -H "Content-Type: application/json" \
+       -d "{\"messages\": [{\"role\": \"user\", \"content\": \"$QUERY\"}], \"model\": \"llama3-70b-8192\"}" \
+       | jq -r '.choices[0].message.content' \
+       | glow -s dracula
+  kill ${_spinner_pid}                                                                                              
+}
+main "$@"
